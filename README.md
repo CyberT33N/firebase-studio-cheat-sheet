@@ -56,3 +56,181 @@ ________
 ✅ That’s it.
 
 </details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+________
+________
+<br><br>
+
+# Workspace
+
+<details><summary>Click to expand..</summary>
+
+
+## 🔧 Firebase Studio – Arbeitsbereich anpassen
+
+Firebase Studio nutzt **Nix** zur Definition reproduzierbarer Entwicklungsumgebungen. Alle Anpassungen erfolgen über `.idx/dev.nix`.
+
+---
+
+### 🛠 dev.nix – Aufbau
+
+```nix
+{ pkgs, ... }: {
+  channel = "stable-23.11"; # oder "unstable"
+
+  packages = [
+    pkgs.nodejs_20
+  ];
+
+  env = {
+    SOME_ENV_VAR = "hello";
+  };
+
+  idx.extensions = [
+    "angular.ng-template"
+  ];
+
+  idx.previews = {
+    enable = true;
+    previews = {
+      web = {
+        command = [ "npm" "run" "start" "--" "--port" "$PORT" "--host" "0.0.0.0" "--disable-host-check" ];
+        manager = "web";
+        # cwd = "app/client"; # optional
+      };
+    };
+  };
+}
+```
+
+---
+
+### 📦 Systemtools hinzufügen
+
+- Verwende [search.nixos.org/packages](https://search.nixos.org/packages)
+- Beispiel:
+```nix
+packages = [
+  pkgs.nodejs_20
+  pkgs.yarn
+  pkgs.docker
+];
+```
+
+---
+
+### 🌍 Globale Umgebungsvariablen
+
+```nix
+env = {
+  NODE_ENV = "development";
+  API_URL = "http://localhost:3000";
+};
+```
+
+---
+
+### 🧩 IDE-Erweiterungen
+
+Zwei Wege:
+1. Manuell via UI (für persönliche Addons)
+2. Automatisch in `dev.nix` (für projektspezifische Erweiterungen):
+```nix
+idx.extensions = [
+  "angular.ng-template"
+  "esbenp.prettier-vscode"
+];
+```
+→ IDs via [open-vsx.org](https://open-vsx.org) finden.
+
+---
+
+### ⚙️ Dienste aktivieren
+
+Firebase Studio unterstützt Services via `services.*`:
+
+```nix
+services.redis.enable = true;
+services.mysql.enable = true;
+services.pubsub.enable = true;
+```
+
+---
+
+### ☁️ gcloud CLI + Komponenten
+
+```nix
+packages = [
+  (pkgs.google-cloud-sdk.withExtraComponents [
+    pkgs.google-cloud-sdk.components.cloud-datastore-emulator
+  ])
+];
+```
+
+---
+
+### ⚡ Lokale Node-Binärdateien nutzen
+
+- Terminal: `npx <tool>`
+- Oder direkt, wenn `node_modules/.bin` im Pfad
+
+---
+
+### 🖼️ Arbeitsbereichs-Icon
+
+- Lege `icon.png` in `.idx/` ab → wird im Dashboard angezeigt  
+  Tipp: Unterschiedliche Icons für Branches (Dev/Prod)
+
+---
+
+### 🎯 Vorschau konfigurieren
+
+- `idx.previews` steuert, wie Vorschauen gestartet werden  
+- `$PORT` wird automatisch von Firebase Studio vergeben
+
+---
+
+### 📦 Projekt zippen
+
+- Rechtsklick im Explorer → *Zip und herunterladen*  
+- Oder Menü: Datei > Ordner öffnen → `/home/user` wählen → zippen
+
+---
+
+### 🧬 Reproduzierbarkeit
+
+Dank Nix ist die dev.nix:
+- **Deklarativ** – beschreibt exakt die Umgebung
+- **Reproduzierbar** – jeder bekommt dieselbe Dev-Umgebung
+- **Versionierbar** – via Git
+
+---
+
+### 🧰 Weitere Ressourcen
+
+- 🔍 [Nix Packages Search](https://search.nixos.org/packages)
+- 📚 [dev.nix Referenz](https://firebase.google.com/docs/studio/customize-workspace)
+- 🧪 [Benutzerdefinierte Vorlagen](https://firebase.google.com/docs/studio/custom-templates)
+
+</details>
+
+
+
+
