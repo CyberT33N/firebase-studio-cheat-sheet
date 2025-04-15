@@ -85,6 +85,13 @@ ________
 
 <details><summary>Click to expand..</summary>
 
+#
+
+## Community Templates
+- https://github.com/project-idx/community-templates/tree/main
+
+
+<br><br>
 
 # Firebase Studio (IDX) `dev.nix` Cheatsheet
 
