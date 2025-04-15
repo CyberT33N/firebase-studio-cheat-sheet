@@ -28,7 +28,8 @@ ________
 
 <details><summary>Click to expand..</summary>
 
-### Schritte:
+
+# Method 1:
 
 1. **Anmelden und Firebase Studio öffnen**  
    Melde dich mit deinem Google-Konto an und öffne [Firebase Studio](https://studio.firebase.google.com).
@@ -54,7 +55,159 @@ ________
    - Du wirst aufgefordert, dich zu authentifizieren.
    - Für GitHub: Folge den Anweisungen und kopiere ein **Zugriffstoken**.
 
-✅ That’s it.
+
+
+<br><br>
+
+# Method 2 - Github:
+
+Follow these steps to delete a directory, authenticate with GitHub, and clone a repository.
+
+## Step 1: Open a Terminal
+Press `Ctrl-Shift-C` to open a terminal window.
+
+## Step 2: Delete the Directory
+First, navigate one directory level up to verify the current path:
+
+```bash
+cd ..
+```
+
+Use the `pwd` command to confirm your location is `/home/user`.
+
+Now, remove the directory that was created:
+
+```bash
+rm -r $repo_name
+```
+
+## Step 3: Authenticate to GitHub with the GitHub CLI
+Run the following command to authenticate to GitHub:
+
+```bash
+gh auth login
+```
+
+You may see a message asking you to fetch `gh` to run it. Follow the prompts to proceed.
+
+## Step 4: Answer the Authentication Questions
+The GitHub CLI will prompt you with several questions. Choose the options that best suit your setup:
+
+1. **What account do you want to log into?**
+   - GitHub.com
+
+2. **What is your preferred protocol for Git operations?**
+   - HTTPS
+
+3. **Authenticate Git with your GitHub credentials?**
+   - Yes
+
+4. **How would you like to authenticate GitHub CLI?**
+   - Login with a web browser
+
+## Step 5: Copy Your One-Time Code
+GitHub will provide a one-time authentication code. Copy the code (but don't press `Ctrl-C` and stop the process).
+
+GitHub will open your browser to authenticate, and you'll need to paste the code there.
+
+## Step 6: Clone the Repository
+After successful authentication, run the following command to clone the repository:
+
+```bash
+git clone https://github.com/$repo_owner/$repo_name.git
+```
+
+## Step 7: Change into the Repo Directory
+Navigate into the newly cloned repository:
+
+```bash
+cd $repo_name
+```
+
+## Step 8: Standard Git Commands
+Now, you should be able to view the repository in your file explorer. You can also use standard git commands in the terminal to add files, commit changes, and push updates to your private repository.
+
+Hier ist die angepasste Version für **Bitbucket**, basierend auf deiner Anfrage, die den **SSH-Key** und das Klonen mit SSH umfasst:
+
+---
+
+# Method 2 - Bitbucket:
+
+Folge diesen Schritten, um ein Verzeichnis zu löschen, dich mit Bitbucket zu authentifizieren und ein Repository über SSH zu klonen.
+
+## Schritt 1: Öffne ein Terminal
+Drücke `Ctrl-Shift-C`, um ein Terminalfenster zu öffnen.
+
+## Schritt 2: Lösche das Verzeichnis
+Wechsle zunächst ein Verzeichnis nach oben, um den aktuellen Pfad zu überprüfen:
+
+```bash
+cd ..
+```
+
+Verwende den Befehl `pwd`, um sicherzustellen, dass du dich im richtigen Verzeichnis befindest (`/home/user`).
+
+Jetzt entferne das Verzeichnis, das du erstellt hast:
+
+```bash
+rm -r $repo_name
+```
+
+## Schritt 3: Erzeuge einen SSH-Key
+Falls du noch keinen SSH-Key hast, erstelle einen neuen:
+
+```bash
+ssh-keygen -t ed25519 -C "deine.email@domain.de"
+```
+
+Lass die Eingabeaufforderung den Standardpfad (`~/.ssh/id_ed25519`) verwenden und setze bei der Eingabe einer Passphrase `Enter` (oder gib eine Passphrase ein, falls du eine setzen möchtest).
+
+## Schritt 4: Füge den SSH-Key zu deinem Bitbucket-Account hinzu
+Kopiere den öffentlichen SSH-Key:
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+Gehe dann zu **Bitbucket → Personal settings → SSH keys → Add key** und füge den kopierten SSH-Key ein.
+
+## Schritt 5: Teste die SSH-Verbindung
+Vergewissere dich, dass die SSH-Verbindung zu Bitbucket funktioniert:
+
+```bash
+ssh -T git@bitbucket.org
+```
+
+Wenn alles richtig ist, bekommst du eine Bestätigung:  
+> *"authenticated via ssh key"*
+
+## Schritt 6: Klone das Repository über SSH
+Nun kannst du das Repository mit der SSH-URL klonen:
+
+```bash
+git clone git@bitbucket.org:<workspace>/<repo>.git
+```
+
+Ersetze `<workspace>` mit dem Namen deines Workspaces und `<repo>` mit dem Repository-Namen.
+
+## Schritt 7: Wechsel in das Repository-Verzeichnis
+Wechsle in das neu geklonte Repository:
+
+```bash
+cd $repo_name
+```
+
+## Schritt 8: Standard-Git-Kommandos
+Jetzt kannst du das Repository im Dateimanager sehen und mit den üblichen Git-Kommandos arbeiten: Dateien hinzufügen, Änderungen committen und die Updates ins private Repository pushen.
+
+```bash
+git status
+git add .
+git commit -m "✨ Dein Commit-Text"
+git push origin main
+```
+
+
 
 </details>
 
