@@ -1,9 +1,31 @@
 # firebase-studio-cheat-sheet
 
+# Docs
+- https://firebase.google.com/docs
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+________
+________
+<br><br>
+
+
 
 # Projekte
 
 ## 🚀 GitHub-Projekt in Firebase Studio importieren
+
+<details><summary>Click to expand..</summary>
 
 ### Schritte:
 
@@ -32,3 +54,5 @@
    - Für GitHub: Folge den Anweisungen und kopiere ein **Zugriffstoken**.
 
 ✅ That’s it.
+
+</details>
