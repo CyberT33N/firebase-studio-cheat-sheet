@@ -80,8 +80,8 @@ ________
 <br><br>
 
 # dev.nix
-Firebase Studio nutzt **Nix** zur Definition reproduzierbarer Entwicklungsumgebungen. Alle Anpassungen erfolgen über `.idx/dev.nix`.
-
+- Firebase Studio nutzt **Nix** zur Definition reproduzierbarer Entwicklungsumgebungen. Alle Anpassungen erfolgen über `.idx/dev.nix`.
+- https://github.com/CyberT33N/nix-cheat-sheet/blob/main/README.md
 
 <details><summary>Click to expand..</summary>
 
