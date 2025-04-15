@@ -259,6 +259,53 @@ ________
 
 # Marketplace
 - https://open-vsx.org/
+
+
+# 🧾Best Extensionms
+
+| Name                  | Publisher ID                          | Link                                                                 |
+|-----------------------|----------------------------------------|----------------------------------------------------------------------|
+| Background            | `shalldie.background`                  | [🔗 Link](https://open-vsx.org/extension/shalldie/background)        |
+| Docker                | `ms-azuretools.vscode-docker`          | [🔗 Link](https://open-vsx.org/extension/ms-azuretools/vscode-docker)|
+| Dotenv                | `mikestead.dotenv`                     | [🔗 Link](https://open-vsx.org/extension/mikestead/dotenv)           |
+| Error Lens           | `usernamehw.errorlens`                 | [🔗 Link](https://open-vsx.org/extension/usernamehw/errorlens)       |
+| ESLint                | `dbaeumer.vscode-eslint`               | [🔗 Link](https://open-vsx.org/extension/dbaeumer/vscode-eslint)     |
+| Fluent Icons          | `miguelsolorio.fluent-icons`           | [🔗 Link](https://open-vsx.org/extension/miguelsolorio/fluent-icons) |
+| GitLens               | `eamodio.gitlens`                      | [🔗 Link](https://open-vsx.org/extension/eamodio/gitlens)            |
+| Five Server           | `yandeu.five-server`                   | [🔗 Link](https://open-vsx.org/extension/yandeu/five-server)         |
+| Nuxt MDC              | `Nuxt.mdc`                             | [🔗 Link](https://open-vsx.org/extension/Nuxt/mdc)                   |
+| PostCSS               | `csstools.postcss`                     | [🔗 Link](https://open-vsx.org/extension/csstools/postcss)           |
+| PowerShell            | `ms-vscode.powershell`                 | [🔗 Link](https://open-vsx.org/extension/ms-vscode/powershell)       |
+| Python                | `ms-python.python`                     | [🔗 Link](https://open-vsx.org/extension/ms-python/python)           |
+| Symbols               | `castrogusttavo.symbols`               | [🔗 Link](https://open-vsx.org/extension/castrogusttavo/symbols)     |
+| Animations            | `BrandonKirbyson.vscode-animations`    | [🔗 Link](https://open-vsx.org/extension/BrandonKirbyson/vscode-animations) |
+| VSCode Pets           | `tonybaloney.vscode-pets`              | [🔗 Link](https://open-vsx.org/extension/tonybaloney/vscode-pets)    |
+
+---
+
+### 🛠️ dev.nix Ausschnitt (`idx.extensions`)
+
+```nix
+idx.extensions = [
+  "shalldie.background"
+  "ms-azuretools.vscode-docker"
+  "mikestead.dotenv"
+  "usernamehw.errorlens"
+  "dbaeumer.vscode-eslint"
+  "miguelsolorio.fluent-icons"
+  "eamodio.gitlens"
+  "yandeu.five-server"
+  "Nuxt.mdc"
+  "csstools.postcss"
+  "ms-vscode.powershell"
+  "ms-python.python"
+  "castrogusttavo.symbols"
+  "BrandonKirbyson.vscode-animations"
+  "tonybaloney.vscode-pets"
+];
+```
+
+
    
 </details>
 
