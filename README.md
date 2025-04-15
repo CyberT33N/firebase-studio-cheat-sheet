@@ -79,18 +79,14 @@ ________
 ________
 <br><br>
 
-# Workspace
+# dev.nix
+Firebase Studio nutzt **Nix** zur Definition reproduzierbarer Entwicklungsumgebungen. Alle Anpassungen erfolgen über `.idx/dev.nix`.
+
 
 <details><summary>Click to expand..</summary>
 
 
-## 🔧 Firebase Studio – Arbeitsbereich anpassen
-
-Firebase Studio nutzt **Nix** zur Definition reproduzierbarer Entwicklungsumgebungen. Alle Anpassungen erfolgen über `.idx/dev.nix`.
-
----
-
-### 🛠 dev.nix – Aufbau
+# 🛠 dev.nix – Aufbau
 
 ```nix
 { pkgs, ... }: {
