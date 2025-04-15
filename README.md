@@ -24,6 +24,7 @@ ________
 # Projekte
 
 ## 🚀 GitHub-Projekt in Firebase Studio importieren
+- https://firebase.google.com/docs/studio/get-started-import?hl=de&import_type=source
 
 <details><summary>Click to expand..</summary>
 
