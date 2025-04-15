@@ -85,7 +85,131 @@ ________
 
 <details><summary>Click to expand..</summary>
 
-#
+# Templates
+
+## Example
+```nix
+# To learn more about how to use Nix to configure your environment
+# see: https://firebase.google.com/docs/studio/customize-workspace
+{ pkgs, ... }: {
+  # Which nixpkgs channel to use.
+  channel = "stable-24.05"; # or "unstable"
+
+  # Use https://search.nixos.org/packages to find packages
+  packages = [
+     # ==== TERMINAL ====
+     pkgs.starship
+
+     pkgs.zsh
+     pkgs.oh-my-zsh
+     pkgs.zsh-syntax-highlighting     # Syntax-Highlighting
+     pkgs.zsh-history-substring-search # History Search (Pfeiltasten)
+
+     pkgs.wget
+
+     # ==== DOCKER ====
+     pkgs.docker
+     pkgs.docker-compose
+
+     # ==== EDITOR ====
+     pkgs.nano
+
+  ];
+
+  # Sets environment variables in the workspace
+  env = {};
+  idx = {
+    # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
+    extensions = [
+      # "vscodevim.vim"
+    ];
+
+    # Enable previews
+    previews = {
+      enable = true;
+      previews = {
+        # web = {
+        #   # Example: run "npm run dev" with PORT set to IDX's defined port for previews,
+        #   # and show it in IDX's web preview panel
+        #   command = ["npm" "run" "dev"];
+        #   manager = "web";
+        #   env = {
+        #     # Environment variables to set for your server
+        #     PORT = "$PORT";
+        #   };
+        # };
+      };
+    };
+
+    # Workspace lifecycle hooks
+    workspace = {
+      # Runs when a workspace is first created
+      onCreate = {
+        # Example: install JS dependencies from NPM
+        npm-install = "npm ci --prefer-offline --timing";
+        default.openFiles = [ ".idx/dev.nix" "README.md" ];
+      };
+      # Runs when the workspace is (re)started
+      onStart = {
+        # Example: start a background task to watch and re-build backend code
+        # watch-backend = "npm run watch-backend";
+        start-db = "docker-compose up -d mongo";
+        update-cursor-rules = "bash update-cursor-rules.sh";
+
+        # --- Starship Initialisierung (wie zuvor) ---
+        init-starship-zsh = ''
+          if ! grep -Fq 'eval "$(starship init zsh)"' ~/.zshrc; then
+            echo "" >> ~/.zshrc
+            echo "# Initialize Starship prompt" >> ~/.zshrc
+            echo 'eval "$(starship init zsh)"' >> ~/.zshrc
+            echo "INFO: Starship initialization added to ~/.zshrc."
+          fi
+        '';
+
+        # --- Zsh Plugins sourcen ---
+        source-zsh-plugins = ''
+          ZSHRC_CHANGED=0 # Flag um zu sehen ob was geändert wurde
+
+          # Source Syntax Highlighting if not already sourced
+          SYNTAX_HIGHLIGHT_PATH="${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+          if ! grep -Fq "source $SYNTAX_HIGHLIGHT_PATH" ~/.zshrc; then
+            echo "" >> ~/.zshrc
+            echo "# Source Zsh Syntax Highlighting" >> ~/.zshrc
+            echo "source $SYNTAX_HIGHLIGHT_PATH" >> ~/.zshrc
+            ZSHRC_CHANGED=1
+          fi
+
+          # Source History Substring Search if not already sourced
+          HISTORY_SEARCH_PATH="${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh"
+          if ! grep -Fq "source $HISTORY_SEARCH_PATH" ~/.zshrc; then
+            echo "" >> ~/.zshrc
+            echo "# Source Zsh History Substring Search" >> ~/.zshrc
+            echo "source $HISTORY_SEARCH_PATH" >> ~/.zshrc
+            ZSHRC_CHANGED=1
+          fi
+
+          # (Optional) Source Autosuggestions
+          # AUTO_SUGGEST_PATH="${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+          # if ! grep -Fq "source $AUTO_SUGGEST_PATH" ~/.zshrc; then
+          #   echo "" >> ~/.zshrc
+          #   echo "# Source Zsh Autosuggestions" >> ~/.zshrc
+          #   echo "source $AUTO_SUGGEST_PATH" >> ~/.zshrc
+          #   ZSHRC_CHANGED=1
+          # fi
+
+          if [ "$ZSHRC_CHANGED" -eq 1 ]; then
+             echo "INFO: Zsh plugin source lines added/updated in ~/.zshrc."
+          else
+             echo "INFO: Zsh plugin source lines already present in ~/.zshrc."
+          fi
+        '';
+        # --------------------------
+      };
+    };
+  };
+}
+
+```
 
 ## Community Templates
 - https://github.com/project-idx/community-templates/tree/main
