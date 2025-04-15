@@ -234,3 +234,34 @@ Dank Nix ist die dev.nix:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+________
+________
+<br><br>
+
+# Extensions
+
+<details><summary>Click to expand..</summary>
+
+# Marketplace
+- https://open-vsx.org/
+   
+</details>
+
+
+
+
